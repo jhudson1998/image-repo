@@ -46,6 +46,15 @@ public class Repo
                 dataOutputStream.writeUTF("login");
                 dataOutputStream.writeUTF(user);
                 dataOutputStream.writeUTF(pass);
+                String result = dataInputStream.readUTF();
+                if(result.equals("success"))
+                {
+                    JOptionPane.showMessageDialog(null, "Login successful");
+                }
+                else if(result.equals("failure"))
+                {
+                    JOptionPane.showMessageDialog(null, "Incorrect username and/or password");
+                }
                 soc.close();
             }
             catch(Exception e)
@@ -59,7 +68,7 @@ public class Repo
     {
         try
         {
-            soc = new Socket("142.134.217.255",9807);
+            soc = new Socket("192.168.2.114",9807);
             outputStream = soc.getOutputStream();
             dataOutputStream = new DataOutputStream(outputStream);
             inputStream = soc.getInputStream();

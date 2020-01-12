@@ -58,7 +58,6 @@ public class RepoServer
         {
             String userin = dataInputStream.readUTF();
             String passin = dataInputStream.readUTF();
-            soc.close();
             Connection conn = DriverManager.getConnection(
             "jdbc:mysql://localhost:3306/imagerepo?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC",
             "root", "Josiah;33");
@@ -71,12 +70,13 @@ public class RepoServer
             }
             if (passin.equals(passdb))
             {
-                //return token indicating login successful
+                dataOutputStream.writeUTF("success");
             }
             else
             {
-                //return token indicating login unsuccessful (username or password wrong)
+                dataOutputStream.writeUTF("failure");
             }
+            soc.close();
         }
         catch(Exception e)
         {
