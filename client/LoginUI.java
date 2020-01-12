@@ -14,7 +14,6 @@ public class LoginUI extends JFrame implements ActionListener
     private TextPrompt user, pass;
     private JButton login,register;
 
-
     public LoginUI(Repo repoObj)
     {
         //instantiate objects
@@ -23,8 +22,8 @@ public class LoginUI extends JFrame implements ActionListener
         this.center = new JPanel(new BorderLayout());
         this.fields = new JPanel(new FlowLayout());
         this.buttons = new JPanel(new FlowLayout());
-        this.jUser = new JTextField(10);
-        this.jPass = new JPasswordField(10);
+        this.jUser = new JTextField(16);
+        this.jPass = new JPasswordField(16);
         this.user = new TextPrompt("Username",jUser);
         this.pass = new TextPrompt("Password",jPass);
         this.login = new JButton("  Login  ");
@@ -67,7 +66,8 @@ public class LoginUI extends JFrame implements ActionListener
         }
         else if(b.equals(register))
         {
-
+            loginFrame.dispose();
+            repo.register();
         }
     }
 }

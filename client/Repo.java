@@ -64,6 +64,11 @@ public class Repo
         }
     }
 
+    public void register()
+    {
+        registerUI.setup();
+    }
+
     public void createSocket()
     {
         try
