@@ -66,6 +66,12 @@ public class RegisterUI extends JFrame implements ActionListener
 
     public void actionPerformed(ActionEvent e)
     {
+        JButton b = (JButton)e.getSource();
 
+        if(b.equals(back))
+        {
+            registerFrame.dispose();
+            repo.login();
+        }
     }
 }

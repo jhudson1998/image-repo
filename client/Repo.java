@@ -27,7 +27,7 @@ public class Repo
         currUser = null;
     }
 
-    public void startRepo()
+    public void login()
     {
         loginUI.setup();
     }
