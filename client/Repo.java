@@ -90,6 +90,33 @@ public class Repo extends JFrame
         {
             JOptionPane.showMessageDialog(null, "Please fill out all of the fields");
         }
+        else
+        {
+            try
+            {
+                createSocket();
+                dataOutputStream.writeUTF("register");
+                dataOutputStream.writeUTF(first);
+                dataOutputStream.writeUTF(last);
+                dataOutputStream.writeUTF(user);
+                dataOutputStream.writeUTF(pass);
+                String result = dataInputStream.readUTF();
+                if(result.equals("success"))
+                {
+                    JOptionPane.showMessageDialog(null, "Registration successful");
+                    login();
+                }
+                else if(result.equals("failure"))
+                {
+                    JOptionPane.showMessageDialog(null, "Username already registered");
+                }
+                soc.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void createSocket()

@@ -1,1 +1,5 @@
+NOT FIXED
+-register button on registerUI causes program to become unresponsive (assuming issue with connection via sockets and/or streams)
+
+FIXED
 -returning to login screen from register screen causes error messages to duplicate (expected multiple sockets and/or streams)
