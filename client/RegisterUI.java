@@ -3,7 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
 
-public class RegisterUI extends JFrame implements ActionListener
+public class RegisterUI extends JPanel implements ActionListener
 {
 
     private Repo repo;
@@ -61,12 +61,21 @@ public class RegisterUI extends JFrame implements ActionListener
         return this.registerPanel;
     }
 
+    public void clearEntries()
+    {
+        jFirst.setText("");
+        jLast.setText("");
+        jUser.setText("");
+        jPass.setText("");
+    }
+
     public void actionPerformed(ActionEvent e)
     {
         JButton b = (JButton)e.getSource();
 
         if(b.equals(back))
         {
+            clearEntries();
             repo.login();
         }
         else if(b.equals(register))

@@ -3,7 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
 
-public class LoginUI extends JFrame implements ActionListener
+public class LoginUI extends JPanel implements ActionListener
 {
     //initialize objects
     private Repo repo;
@@ -52,6 +52,12 @@ public class LoginUI extends JFrame implements ActionListener
         return this.loginPanel;
     }
 
+    public void clearEntries()
+    {
+        jUser.setText("");
+        jPass.setText("");
+    }
+
     public void actionPerformed(ActionEvent e)
     {
         JButton b = (JButton)e.getSource();
@@ -62,6 +68,7 @@ public class LoginUI extends JFrame implements ActionListener
         }
         else if(b.equals(register))
         {
+            clearEntries();
             repo.register();
         }
     }

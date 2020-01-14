@@ -1,0 +1,3 @@
+-main homeUI panel with borderlayout, center panel displays photos, top panel has logo and home button
+-ability to scroll through photos
+-comments? likes?

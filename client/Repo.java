@@ -52,6 +52,13 @@ public class Repo extends JFrame
         frame.revalidate();
     }
 
+    public void home()
+    {
+        frame.setContentPane(homeUI.getPanel());
+        frame.repaint();
+        frame.revalidate();
+    }
+
     public void checkLogin(String user,String pass)
     {
         if(user.equals("") || pass.equals(""))
@@ -69,7 +76,7 @@ public class Repo extends JFrame
                 String result = dataInputStream.readUTF();
                 if(result.equals("success"))
                 {
-                    JOptionPane.showMessageDialog(null, "Login successful");
+                    home();
                 }
                 else if(result.equals("failure"))
                 {
@@ -89,6 +96,22 @@ public class Repo extends JFrame
         if(first.equals("") || last.equals("") || user.equals("") || pass.equals(""))
         {
             JOptionPane.showMessageDialog(null, "Please fill out all of the fields");
+        }
+        else if(first.length() > 10 || !first.matches("[a-zA-Z]+"))
+        {
+            JOptionPane.showMessageDialog(null, "First name must only contain a-z and be a length of 10 or less");
+        }
+        else if(last.length() > 10 || !last.matches("[a-zA-Z]+"))
+        {
+            JOptionPane.showMessageDialog(null, "Last name must only contain a-z and be a length of 10 or less");
+        }
+        else if(user.length() > 16 || !user.matches("[a-zA-Z0-9]+"))
+        {
+            JOptionPane.showMessageDialog(null, "Username must only contain a-z, 0-9 and be 16 or less letters");
+        }
+        else if(pass.length() > 16 || !pass.matches("[a-zA-Z0-9]+"))
+        {
+            JOptionPane.showMessageDialog(null, "Password must only contain a-z, 0-9 and be 16 or less letters");
         }
         else
         {

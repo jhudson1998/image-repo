@@ -94,6 +94,7 @@ public class RepoServer
             "root", "Josiah;33");
             Statement stmt = conn.createStatement();
             ResultSet rset = stmt.executeQuery("SELECT first FROM user WHERE username = " + "'" + userin + "'");
+            dataOutputStream.writeUTF("success");
             soc.close();
         }
         catch(Exception e)
