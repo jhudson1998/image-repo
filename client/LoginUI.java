@@ -7,7 +7,7 @@ public class LoginUI extends JFrame implements ActionListener
 {
     //initialize objects
     private Repo repo;
-    private JFrame loginFrame;
+    private JPanel loginPanel;
     private JPanel center,fields,buttons;
     private JTextField jUser;
     private JPasswordField jPass;
@@ -18,7 +18,7 @@ public class LoginUI extends JFrame implements ActionListener
     {
         //instantiate objects
         this.repo = repoObj;
-        this.loginFrame = new JFrame("Image Repo Login");
+        this.loginPanel = new JPanel();
         this.center = new JPanel(new BorderLayout());
         this.fields = new JPanel(new FlowLayout());
         this.buttons = new JPanel(new FlowLayout());
@@ -29,21 +29,14 @@ public class LoginUI extends JFrame implements ActionListener
         this.login = new JButton("  Login  ");
         this.register = new JButton("Register");
 
-    }
-
-    public void setup()
-    {
         //add action listeners to buttons
         login.addActionListener(this);
         register.addActionListener(this);
 
         //setup frame
-        loginFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        loginFrame.setSize(1280,720);
-        loginFrame.setResizable(false);
-        loginFrame.setLayout(new BorderLayout());
-        loginFrame.add(center,BorderLayout.CENTER);
-        loginFrame.add(new JLabel(new ImageIcon("logo.png")),BorderLayout.NORTH);
+        loginPanel.setLayout(new BorderLayout());
+        loginPanel.add(center,BorderLayout.CENTER);
+        loginPanel.add(new JLabel(new ImageIcon("logo.png")),BorderLayout.NORTH);
         jUser.setFont(jUser.getFont().deriveFont(Font.PLAIN, 20f));
         jPass.setFont(jPass.getFont().deriveFont(Font.PLAIN, 20f));
         fields.add(jUser);
@@ -52,8 +45,11 @@ public class LoginUI extends JFrame implements ActionListener
         buttons.add(register);
         center.add(fields,BorderLayout.NORTH);
         center.add(buttons,BorderLayout.CENTER);
-        loginFrame.getRootPane().setDefaultButton(login);
-        loginFrame.setVisible(true);
+    }
+
+    public JPanel getPanel()
+    {
+        return this.loginPanel;
     }
 
     public void actionPerformed(ActionEvent e)
@@ -66,7 +62,6 @@ public class LoginUI extends JFrame implements ActionListener
         }
         else if(b.equals(register))
         {
-            loginFrame.dispose();
             repo.register();
         }
     }
