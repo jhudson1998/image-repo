@@ -98,9 +98,6 @@ public class RepoServer
             "root", "Josiah;33");
             Statement stmt = conn.createStatement();
             ResultSet rset = stmt.executeQuery("SELECT first FROM user WHERE username = " + "'" + userin + "'");
-<<<<<<< HEAD
-            dataOutputStream.writeUTF("success");
-=======
             if(rset.next())
             {
                 dataOutputStream.writeUTF("failure");
@@ -110,7 +107,6 @@ public class RepoServer
                 stmt.executeUpdate("INSERT INTO user VALUES(" + "'" + userin + "'" + "," + "'" + passin + "'" + "," + "'" + firstin + "'" + "," + "'" + lastin + "');");
                 dataOutputStream.writeUTF("success");
             }
->>>>>>> 2ef254c73df12995014e202679ab7df59735bd19
             soc.close();
         }
         catch(Exception e)
