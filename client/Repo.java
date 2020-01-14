@@ -5,8 +5,9 @@ import javax.swing.*;
 import java.io.*;
 import java.net.Socket;
 
-public class Repo
+public class Repo extends JFrame
 {
+    private JFrame frame;
     private LoginUI loginUI;
     private RegisterUI registerUI;
     private HomeUI homeUI;
@@ -20,6 +21,7 @@ public class Repo
 
     public Repo()
     {
+        frame = new JFrame("Image Repo");
         loginUI = new LoginUI(this);
         registerUI = new RegisterUI(this);
         homeUI = new HomeUI(this);
@@ -27,9 +29,27 @@ public class Repo
         currUser = null;
     }
 
+    public void setup()
+    {
+        frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setSize(1280,720);
+        frame.add(loginUI.getPanel());
+        frame.setVisible(true);
+    }
+
     public void login()
     {
-        loginUI.setup();
+        frame.setContentPane(loginUI.getPanel());
+        frame.repaint();
+        frame.revalidate();
+    }
+
+    public void register()
+    {
+        frame.setContentPane(registerUI.getPanel());
+        frame.repaint();
+        frame.revalidate();
     }
 
     public void checkLogin(String user,String pass)
@@ -64,9 +84,12 @@ public class Repo
         }
     }
 
-    public void register()
+    public void checkRegister(String first, String last, String user, String pass)
     {
-        registerUI.setup();
+        if(first.equals("") || last.equals("") || user.equals("") || pass.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Please fill out all of the fields");
+        }
     }
 
     public void createSocket()

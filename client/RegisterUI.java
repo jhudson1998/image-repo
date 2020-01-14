@@ -7,7 +7,7 @@ public class RegisterUI extends JFrame implements ActionListener
 {
 
     private Repo repo;
-    private JFrame registerFrame;
+    private JPanel registerPanel;
     private JPanel center,p1,p2,p3,p4;
     private JTextField jFirst,jLast,jUser;
     private JPasswordField jPass;
@@ -17,7 +17,7 @@ public class RegisterUI extends JFrame implements ActionListener
     public RegisterUI(Repo repoObj)
     {
         this.repo = repoObj;
-        this.registerFrame = new JFrame("Image Repo Sign-Up");
+        this.registerPanel = new JPanel();
         this.center = new JPanel(new GridLayout(4,1));
         this.p1 = new JPanel(new FlowLayout());
         this.p2 = new JPanel(new FlowLayout());
@@ -33,23 +33,17 @@ public class RegisterUI extends JFrame implements ActionListener
         this.pass = new TextPrompt("Password",jPass);
         this.register = new JButton("Register");
         this.back = new JButton("Back");
-    }
 
-    public void setup()
-    {
         register.addActionListener(this);
         back.addActionListener(this);
 
-        registerFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        registerFrame.setSize(1280,720);
-        registerFrame.setResizable(false);
-        registerFrame.setLayout(new BorderLayout());
+        registerPanel.setLayout(new BorderLayout());
         jFirst.setFont(jUser.getFont().deriveFont(Font.PLAIN, 20f));
         jLast.setFont(jUser.getFont().deriveFont(Font.PLAIN, 20f));
         jUser.setFont(jUser.getFont().deriveFont(Font.PLAIN, 20f));
         jPass.setFont(jUser.getFont().deriveFont(Font.PLAIN, 20f));
-        registerFrame.add(new JLabel(new ImageIcon("logo.png")),BorderLayout.NORTH);
-        registerFrame.add(center,BorderLayout.CENTER);
+        registerPanel.add(new JLabel(new ImageIcon("logo.png")),BorderLayout.NORTH);
+        registerPanel.add(center,BorderLayout.CENTER);
         center.add(p1);
         center.add(p2);
         center.add(p3);
@@ -60,8 +54,11 @@ public class RegisterUI extends JFrame implements ActionListener
         p2.add(jPass);
         p3.add(back);
         p3.add(register);
-        registerFrame.getRootPane().setDefaultButton(register);
-        registerFrame.setVisible(true);
+    }
+
+    public JPanel getPanel()
+    {
+        return this.registerPanel;
     }
 
     public void actionPerformed(ActionEvent e)
@@ -70,8 +67,11 @@ public class RegisterUI extends JFrame implements ActionListener
 
         if(b.equals(back))
         {
-            registerFrame.dispose();
             repo.login();
+        }
+        else if(b.equals(register))
+        {
+            repo.checkRegister(jFirst.getText(),jLast.getText(),jUser.getText(),new String(jPass.getPassword()));
         }
     }
 }
