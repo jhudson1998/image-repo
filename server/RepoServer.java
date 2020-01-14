@@ -35,6 +35,9 @@ public class RepoServer
                     {
                         case "login":
                             login();
+
+                        case "register":
+                            register();
                     }
                 }
                 catch(Exception e)
@@ -55,6 +58,7 @@ public class RepoServer
         {
             String userin = dataInputStream.readUTF();
             String passin = dataInputStream.readUTF();
+            System.out.println(passin);
             Connection conn = DriverManager.getConnection(
             "jdbc:mysql://localhost:3306/imagerepo?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC",
             "root", "Josiah;33");
@@ -94,6 +98,15 @@ public class RepoServer
             "root", "Josiah;33");
             Statement stmt = conn.createStatement();
             ResultSet rset = stmt.executeQuery("SELECT first FROM user WHERE username = " + "'" + userin + "'");
+            if(rset.next())
+            {
+                dataOutputStream.writeUTF("failure");
+            }
+            else
+            {
+                stmt.executeUpdate("INSERT INTO user VALUES(" + "'" + userin + "'" + "," + "'" + passin + "'" + "," + "'" + firstin + "'" + "," + "'" + lastin + "');");
+                dataOutputStream.writeUTF("success");
+            }
             soc.close();
         }
         catch(Exception e)
