@@ -105,6 +105,7 @@ public class RepoServer
             else
             {
                 stmt.executeUpdate("INSERT INTO user VALUES(" + "'" + userin + "'" + "," + "'" + passin + "'" + "," + "'" + firstin + "'" + "," + "'" + lastin + "');");
+                new File("C:/Users/James/Desktop/Database/users/" + userin).mkdirs();
                 dataOutputStream.writeUTF("success");
             }
             soc.close();
