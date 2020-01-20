@@ -72,6 +72,16 @@ public class RepoServer
             if (passin.equals(passdb))
             {
                 dataOutputStream.writeUTF("success");
+                rset = stmt.executeQuery("SELECT first, last FROM user WHERE username = " + "'" + userin + "'");
+                String first = null;
+                String last = null;
+                while(rset.next())
+                {
+                    first = rset.getString("first");
+                    last = rset.getString("last");
+                }
+                dataOutputStream.writeUTF(first);
+                dataOutputStream.writeUTF(last);
             }
             else
             {
@@ -116,4 +126,3 @@ public class RepoServer
         }
     }
 }
-//test
