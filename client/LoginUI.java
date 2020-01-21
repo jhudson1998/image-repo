@@ -58,6 +58,11 @@ public class LoginUI extends JPanel implements ActionListener
         jPass.setText("");
     }
 
+    public JButton getDefaultButton()
+    {
+        return this.login;
+    }
+
     public void actionPerformed(ActionEvent e)
     {
         JButton b = (JButton)e.getSource();

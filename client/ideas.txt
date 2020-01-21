@@ -1,3 +1,23 @@
--main homeUI panel with borderlayout, center panel displays photos, top panel has logo and home button
--ability to scroll through photos
+THOUGHTS
 -comments? likes?
+-photos stored with an integer (1 for first photo)
+-photos showed in chronological order with 10 per page(arrows to navigate pages)
+-settings page including option to delete account and associated photos (what else?)
+-do I have to store photos when retrieved from server or can I display them as soon as they are retrieved from the server
+    (prefer to display them dynamically)
+-would prefer to have search functionality match usernames close to search but probably will have to externally source it
+-select password/change focus when failed login for ease of password retyping
+-can I change the speed of the scroll bar(currently far too slow)
+-setPreferredSize creates padding around photos smaller than the size, can I get rid of that to create even padding between all photos?
+    -> could show smaller icons(?) that expand into full sized photos when clicked
+    -> how would I create a clean UI with that? brainstorm layouts
+
+
+CURRENT TASKS
+-browse files and select one using GUI
+-upload work flow: send photo to server, store in users folder, update database, refresh photo feed in homeUI
+    (always revert to newest 10 photos)
+
+FUTURE TASKS
+-home button brings user back to page 1 of photos
+-show text with each buttons features on hover

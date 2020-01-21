@@ -12,6 +12,7 @@ public class Repo extends JFrame
     private RegisterUI registerUI;
     private HomeUI homeUI;
     private PhotoUI photoUI;
+    private String first, last;
     private User currUser;
     private Socket soc;
     private OutputStream outputStream;
@@ -27,6 +28,8 @@ public class Repo extends JFrame
         homeUI = new HomeUI(this);
         photoUI = new PhotoUI(this);
         currUser = null;
+        first = null;
+        last = null;
     }
 
     public void setup()
@@ -35,12 +38,14 @@ public class Repo extends JFrame
         frame.setResizable(false);
         frame.setSize(1280,720);
         frame.add(loginUI.getPanel());
+        frame.getRootPane().setDefaultButton(loginUI.getDefaultButton());
         frame.setVisible(true);
     }
 
     public void login()
     {
         frame.setContentPane(loginUI.getPanel());
+        frame.getRootPane().setDefaultButton(loginUI.getDefaultButton());
         frame.repaint();
         frame.revalidate();
     }
@@ -55,8 +60,25 @@ public class Repo extends JFrame
     public void home()
     {
         frame.setContentPane(homeUI.getPanel());
+        frame.getRootPane().setDefaultButton(homeUI.getDefaultButton());
         frame.repaint();
         frame.revalidate();
+    }
+
+    public void upload()
+    {
+        frame.setContentPane(photoUI.getPanel());
+        frame.repaint();
+        frame.revalidate();
+    }
+
+    public void logout()
+    {
+        frame.setContentPane(loginUI.getPanel());
+        frame.getRootPane().setDefaultButton(loginUI.getDefaultButton());
+        frame.repaint();
+        frame.revalidate();
+        currUser = null;
     }
 
     public void checkLogin(String user,String pass)
@@ -76,6 +98,10 @@ public class Repo extends JFrame
                 String result = dataInputStream.readUTF();
                 if(result.equals("success"))
                 {
+                    first = dataInputStream.readUTF();
+                    last = dataInputStream.readUTF();
+                    currUser = new User(user, first, last);
+                    loginUI.clearEntries();
                     home();
                 }
                 else if(result.equals("failure"))

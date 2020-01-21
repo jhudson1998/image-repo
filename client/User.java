@@ -20,4 +20,11 @@ public class User
     {
         return this.lastName;
     }
+
+    public void printDetails()
+    {
+        System.out.println("Username: " + username);
+        System.out.println("First name: " + firstName);
+        System.out.println("Last name: " + lastName);
+    }
 }
