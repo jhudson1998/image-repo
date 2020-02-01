@@ -21,3 +21,9 @@ CURRENT TASKS
 FUTURE TASKS
 -home button brings user back to page 1 of photos
 -show text with each buttons features on hover
+
+
+-MAKE FEED PHOTOS A MAX WIDTH OF 960
+-can be any height
+
+-for loop for the current 10 photos to check and/or change their size to fit on feed

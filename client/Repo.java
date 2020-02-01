@@ -81,6 +81,36 @@ public class Repo extends JFrame
         currUser = null;
     }
 
+    public JFrame getFrame()
+    {
+        return this.frame;
+    }
+
+    public void handleFile(File file)
+    {
+
+    }
+
+    //scales image keeping aspect ratio given width
+    public ImageIcon imageScaleWidth(ImageIcon img, int x)
+    {
+        double ratio = (double)x/(double)img.getIconWidth();
+        int y = (int)(ratio*img.getIconHeight());
+        Image image = img.getImage();
+        Image newimg = image.getScaledInstance(x, y, java.awt.Image.SCALE_SMOOTH);
+        return new ImageIcon(newimg);
+    }
+
+    //scales image keeping aspect ratio given height
+    public ImageIcon imageScaleHeight(ImageIcon img, int y)
+    {
+        double ratio = (double)y/(double)img.getIconHeight();
+        int x = (int)(ratio*img.getIconWidth());
+        Image image = img.getImage();
+        Image newimg =  image.getScaledInstance(x, y, java.awt.Image.SCALE_SMOOTH);
+        return new ImageIcon(newimg);
+    }
+
     public void checkLogin(String user,String pass)
     {
         if(user.equals("") || pass.equals(""))
@@ -172,7 +202,7 @@ public class Repo extends JFrame
     {
         try
         {
-            soc = new Socket("192.168.2.114",9807);
+            soc = new Socket("47.55.234.178",9807);
             outputStream = soc.getOutputStream();
             dataOutputStream = new DataOutputStream(outputStream);
             inputStream = soc.getInputStream();

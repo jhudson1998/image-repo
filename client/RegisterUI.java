@@ -8,7 +8,7 @@ public class RegisterUI extends JPanel implements ActionListener
 
     private Repo repo;
     private JPanel registerPanel;
-    private JPanel center,p1,p2,p3,p4;
+    private JPanel center,top,left,right,bottom;
     private JTextField jFirst,jLast,jUser;
     private JPasswordField jPass;
     private TextPrompt first,last,user,pass;
@@ -18,11 +18,11 @@ public class RegisterUI extends JPanel implements ActionListener
     {
         this.repo = repoObj;
         this.registerPanel = new JPanel();
-        this.center = new JPanel(new GridLayout(4,1));
-        this.p1 = new JPanel(new FlowLayout());
-        this.p2 = new JPanel(new FlowLayout());
-        this.p3 = new JPanel(new FlowLayout());
-        this.p4 = new JPanel(new FlowLayout());
+        this.center = new JPanel(new GridBagLayout());
+        this.top = new JPanel(new GridBagLayout());
+        this.left = new JPanel();
+        this.right = new JPanel();
+        this.bottom = new JPanel();
         this.jFirst = new JTextField(16);
         this.jLast = new JTextField(16);
         this.jUser = new JTextField(16);
@@ -42,18 +42,37 @@ public class RegisterUI extends JPanel implements ActionListener
         jLast.setFont(jUser.getFont().deriveFont(Font.PLAIN, 20f));
         jUser.setFont(jUser.getFont().deriveFont(Font.PLAIN, 20f));
         jPass.setFont(jUser.getFont().deriveFont(Font.PLAIN, 20f));
-        registerPanel.add(new JLabel(new ImageIcon("logo.png")),BorderLayout.NORTH);
+        GridBagConstraints c = new GridBagConstraints();
+        c.insets = new Insets(10,0,10,0);
+        top.add(new JLabel(new ImageIcon(getClass().getResource("images/logo.png"))),c);
+        registerPanel.add(top,BorderLayout.NORTH);
         registerPanel.add(center,BorderLayout.CENTER);
-        center.add(p1);
-        center.add(p2);
-        center.add(p3);
-        center.add(p4);
-        p1.add(jFirst);
-        p1.add(jLast);
-        p2.add(jUser);
-        p2.add(jPass);
-        p3.add(back);
-        p3.add(register);
+        registerPanel.add(left,BorderLayout.WEST);
+        registerPanel.add(right,BorderLayout.EAST);
+        registerPanel.add(bottom,BorderLayout.SOUTH);
+
+        center.setBackground(Color.WHITE);
+        c.insets = new Insets(10,0,0,10);
+        c.gridwidth = 3;
+        c.gridx = 0;
+        c.gridy = 0;
+        center.add(jFirst,c);
+        c.gridy = 1;
+        center.add(jLast,c);
+        c.insets = new Insets(10,10,0,0);
+        c.gridy = 0;
+        c.gridx = 4;
+        center.add(jUser,c);
+        c.gridy = 1;
+        center.add(jPass,c);
+
+        c.insets = new Insets(40,0,0,0);
+        c.gridwidth = 1;
+        c.gridx = 2;
+        c.gridy = 2;
+        center.add(back,c);
+        c.gridx = 6;
+        center.add(register,c);
     }
 
     public JPanel getPanel()
